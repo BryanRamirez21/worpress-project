@@ -14,7 +14,11 @@
       <div class="full-width-split__one">
         <div class="full-width-split__inner">
           <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
-
+          <?php
+          //WP_Query its a class that wordpress provides to us and its a blueprint (?)
+          //    "what data we want to query from the DB"
+          $homePageEvents = new WP_Query();
+          ?>
           <div class="event-summary">
             <a class="event-summary__date t-center" href="#">
               <span class="event-summary__month">Mar</span>

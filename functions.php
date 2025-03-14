@@ -33,4 +33,9 @@
 
     //we add an action every time we want WP to do some
     add_action('after_setup_theme', 'university_features');
+
+
+    //* I ADDEDD A FUNCTION-ACTION ON C:\xampp\htdocs\wordpress\wp-content\mu-plugins
+    //* whatch the video "28 custom types" to remember what a MU-pligin is, and why its 
+    //      importante for things like, when we have a custom plugin that everyone must use for the site
 ?>
