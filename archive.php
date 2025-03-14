@@ -1,36 +1,24 @@
-
-<?php
-    // get_header();
-
-//* Depending on the page (the literal URL you visit) WP will use that info for the functions
-//*     EG: if we visist a post URL, the function the_content(); will only display the content of the post
-//*             but if we visist a page URL, the same function will only display the content of the page
-    // while(have_posts()){   
-      //  the_post(); //this function will fetch the 10 recent post 
-        ?>
-            <!-- once we clikc a link, the url will change, by this WP will see the link and only loop through the post that mathces -->
-            <h2><!-- <a href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a></h2> -->
-
-            <!-- once we clikc a link, the url will change, by this WP will see the link and only loop through the post that mathces -->
-            <!-- but also, itll try to seatch for a default file named "single.php" to redirect this click -->
-            <?php //the_content(); ?>
-            <hr />
-        <?php
-    // }
-
-
-    // get_footer();
-?>
-
 <?php
   get_header(); ?>
 
   <div class="page-banner">
     <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
     <div class="page-banner__content container container--narrow">
-      <h1 class="page-banner__title">Welcome to the blog</h1>
+      <!-- this function will return all the information of the archives, like the commented functions bellow -->
+      <h1 class="page-banner__title"><?php the_archive_title() ?></h1>
+        <?php 
+          // the function is_category will return true if were on a category archive screen 
+          //if(is_category()){
+          //  echo "Post of the category: ";single_cat_title();
+          //} 
+          // the function is_author_archive will return true if were on a author archive screen 
+          //if(is_author()){
+          //  echo "Posts by: "; the_author();
+          //}
+        ?>
+
         <div class="page-banner__intro">
-          <p>Keep up with our news</p>
+          <p><?php the_archive_description(); ?></p>
         </div>
     </div>  
   </div>
