@@ -1,0 +1,4 @@
+associative array
+$arr = array(
+    'dog 
+)

@@ -17,4 +17,20 @@
 
     // "the 1st argument its only the a name to reference we want to load a script file (JS or CSS), the 2nd its the name of the function we want to run"
     add_action('wp_enqueue_scripts', 'university_files');
+
+
+    function university_features(){
+        // this WP func will create a menu (like a <ul> <li>) out of the dashboard -> menu declared pages that we want to show
+        // in the custom menu we declare here:  
+        //      recive a name for a menu location (its just a nickname), 
+        //      the second its the text that will show on the WP admin menu -> appareance
+        //register_nav_menu('header_menu_location', 'Header Menu Location');
+        //register_nav_menu('footer_menu_location1', 'Footer Menu Location 1');
+        //register_nav_menu('footer_menu_location2', 'Footer Menu Location 2');
+        
+        add_theme_support('title-tag');
+    }
+
+    //we add an action every time we want WP to do some
+    add_action('after_setup_theme', 'university_features');
 ?>
