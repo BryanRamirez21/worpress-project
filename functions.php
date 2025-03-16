@@ -30,7 +30,6 @@
         
         add_theme_support('title-tag');
     }
-
     //we add an action every time we want WP to do some
     add_action('after_setup_theme', 'university_features');
 
@@ -38,4 +37,37 @@
     //* I ADDEDD A FUNCTION-ACTION ON C:\xampp\htdocs\wordpress\wp-content\mu-plugins
     //* whatch the video "28 custom types" to remember what a MU-pligin is, and why its 
     //      importante for things like, when we have a custom plugin that everyone must use for the site
+    
+
+
+    function university_adjust_queries($query){
+        $today = date('Ymd');
+        
+        //! this query modify can even modify the dashboard, that why this IF
+        if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()){
+            //* all of this in ep 32-udemy
+            // this query has a method call, it uses the name of the query parameter we want to change
+            // and the second its the value we want to asign to it
+
+            //      if we'd tried this, the pagination (that is also the "front-page": 
+            //      $homepagePosts = new WP_query(array( 'posts_per_page' => 2,) or even in the dashboard
+            //      itll affect the pagination display BUT ALSO ITLL AFFECT THE SAME ON THE DASHBOARD
+            //$query->set('posts_per_page', 1);
+
+            //* the query its the query called out by the function front-page": 
+            //*      $homePageEvents = new WP_Query(array(...))
+            $query->set('meta_key', 'event_date');
+            $query->set('orderby', 'meta_value_num');
+            $query->set('order', 'ASC');
+            $query->set('meta_query', array(
+                array(
+                  'key' => 'event_date',
+                  'compare' => '>=',
+                  'value' => $today,
+                  'type' => 'numeric'
+                )
+              ));
+        }
+    }
+    add_action('pre_get_posts', 'university_adjust_queries');
 ?>
