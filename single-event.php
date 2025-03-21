@@ -28,6 +28,23 @@
             <div class="generic-content">
                 <?php the_content(); ?>
             </div>
+
+            <?php
+                //"our advanced custom field plugins, gives us acces to this func
+                $related_programs = get_field('related_program');
+
+                if($related_programs){
+                    echo '<hr class="section-break" />';
+                    echo '<h2 class="headline headline--medium ">Related program(s)</h2>';
+                    echo '<ul class="link-list min-list">';
+                    foreach($related_programs as $program){ ?>
+                        <li><a href="<?php echo get_the_permalink($program); ?>"><?php echo get_the_title($program); ?></a></li>
+                    <?php }
+                    echo '</ul>';
+                }
+                
+            ?>
+
         </div>
     <?php }
     get_footer();

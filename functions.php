@@ -43,8 +43,16 @@
     function university_adjust_queries($query){
         $today = date('Ymd');
         
+        //validation to know if user its on "program" page
+        if(!is_admin() AND is_post_type_archive('program') AND is_main_query()){
+            $query->set('orderby', 'title');
+            $query->set('order', 'ASC');
+            $query->set('posts_per_page', -1);
+        }
+
+        //validation to know if user its on "events" main page
         //! this query modify can even modify the dashboard, that why this IF
-        if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()){
+        if(!is_admin() AND is_post_type_archive('event') AND is_main_query()){
             //* all of this in ep 32-udemy
             // this query has a method call, it uses the name of the query parameter we want to change
             // and the second its the value we want to asign to it
@@ -70,4 +78,9 @@
         }
     }
     add_action('pre_get_posts', 'university_adjust_queries');
+
+
+
+
+
 ?>
