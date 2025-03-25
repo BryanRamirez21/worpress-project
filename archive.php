@@ -1,27 +1,27 @@
 <?php
-  get_header(); ?>
+  get_header(); 
+  
+  pageBanner(array(
+    //when an function starts with "the_" it handles the echo, doesnt return the value
+    //    in order to GET the value, we start the function with "get_"
+    'title' => get_the_archive_title(),
+    'subtitle' => get_the_archive_description()
+  ));
+  ?>
 
-  <div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
-    <div class="page-banner__content container container--narrow">
-      <!-- this function will return all the information of the archives, like the commented functions bellow -->
-      <h1 class="page-banner__title"><?php the_archive_title() ?></h1>
-        <?php 
-          // the function is_category will return true if were on a category archive screen 
-          //if(is_category()){
-          //  echo "Post of the category: ";single_cat_title();
-          //} 
-          // the function is_author_archive will return true if were on a author archive screen 
-          //if(is_author()){
-          //  echo "Posts by: "; the_author();
-          //}
-        ?>
-
-        <div class="page-banner__intro">
-          <p><?php the_archive_description(); ?></p>
-        </div>
-    </div>  
-  </div>
+  <!-- this function will return all the information of the archives, like the commented functions bellow 
+    <h1 class="page-banner__title"><?php //the_archive_title() ?></h1>
+    <?php 
+      // the function is_category will return true if were on a category archive screen 
+      //if(is_category()){
+      //  echo "Post of the category: ";single_cat_title();
+      //} 
+      // the function is_author_archive will return true if were on a author archive screen 
+      //if(is_author()){
+      //  echo "Posts by: "; the_author();
+      //}
+    ?>
+  -->
 
   <div class="container container--narrow page-section">
     <?php

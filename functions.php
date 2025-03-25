@@ -18,7 +18,7 @@
     // "the 1st argument its only the a name to reference we want to load a script file (JS or CSS), the 2nd its the name of the function we want to run"
     add_action('wp_enqueue_scripts', 'university_files');
 
-
+    //* THIS FUNCITON TELLS WORDPRESS WHAT SORT OF FEATURES WE WANT OUR THEME TO SUPPORT
     function university_features(){
         // this WP func will create a menu (like a <ul> <li>) out of the dashboard -> menu declared pages that we want to show
         // in the custom menu we declare here:  
@@ -29,6 +29,14 @@
         //register_nav_menu('footer_menu_location2', 'Footer Menu Location 2');
         
         add_theme_support('title-tag');
+        add_theme_support('post-thumbnails');
+
+        //params: nicname, pixels W, pixels H, want to crop img || wich part of the img to crop
+        // we can use this custom sizes putting as an argument on the func "the_post_thumbnail_url()"
+        //      the custom name of the img we gave it down here (check "single-professor.php" to see it)
+        add_image_size('professorLandscape', 400, 260, true);
+        add_image_size('professorPortrait', 480, 650, true);
+        add_image_size('pageBanner', 1500, 350, true);
     }
     //we add an action every time we want WP to do some
     add_action('after_setup_theme', 'university_features');
@@ -81,6 +89,35 @@
 
 
 
+    // function to set the page banner, title and subtitle on each "single-{page}" (ref: ep 45 - 46 udemy WP)
+    function pageBanner($data = NULL){
+        if(!isset($data['title'])){
+            $data['title'] = get_the_title();
+        }
+        if(!isset($data['subtitle'])){
+            // WP function to get the custom field value (in this case, the CF called: )
+            $data['subtitle'] = get_field('page_banner_subtitle');
+        }
+        if(!isset($data['photo'])){
+            //check if theres an img uploaded into the CF 
+            if(get_field('page_image_background_image') AND !is_archive() AND !is_home() ){
+                $data['photo'] = get_field('page_image_background_image')['sizes']['pageBanner'];
+            }else{
+                //function to point to out theme folder 
+                $data['photo'] = get_theme_file_uri('/images/ocean.jpg');
+            }
+        }
 
 
+        ?>
+        <div class="page-banner">
+            <div class="page-banner__bg-image" style="background-image: url(<?php echo $data['photo'] ?>);"></div>
+            <div class="page-banner__content container container--narrow">
+                <h1 class="page-banner__title"><?php echo $data['title']; ?></h1>
+                <div class="page-banner__intro">
+                    <p><?php echo $data['subtitle']; ?></p>
+                </div>
+            </div>  
+        </div>        
+    <?php }
 ?>

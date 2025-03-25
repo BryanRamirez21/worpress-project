@@ -8,13 +8,12 @@
     // while(have_posts()){   
       //  the_post(); //this function will fetch the 10 recent post 
         ?>
-            <!-- once we clikc a link, the url will change, by this WP will see the link and only loop through the post that mathces -->
-            <h2><!-- <a href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a></h2> -->
+            <!-- once we clikc a link, the url will change, by this WP will see the link and only loop through the post that mathces
+            <h2><a href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a></h2>
 
-            <!-- once we clikc a link, the url will change, by this WP will see the link and only loop through the post that mathces -->
-            <!-- but also, itll try to seatch for a default file named "single.php" to redirect this click -->
+            once we clikc a link, the url will change, by this WP will see the link and only loop through the post that mathces
+             but also, itll try to seatch for a default file named "single.php" to redirect this click -->
             <?php //the_content(); ?>
-            <hr />
         <?php
     // }
 
@@ -23,17 +22,13 @@
 ?>
 
 <?php
-  get_header(); ?>
-
-  <div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/ocean.jpg') ?>);"></div>
-    <div class="page-banner__content container container--narrow">
-      <h1 class="page-banner__title">Welcome to the blog</h1>
-        <div class="page-banner__intro">
-          <p>Keep up with our news</p>
-        </div>
-    </div>  
-  </div>
+  get_header(); 
+  
+  pageBanner(array(
+    'title' => 'Welcome to the blog',
+    'subtitle' => 'Keep up with the news',
+  ));
+  ?>
 
   <div class="container container--narrow page-section">
     <?php
